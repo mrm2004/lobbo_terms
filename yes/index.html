@@ -1,17 +1,53 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Termos e Condições de Uso App Lobbo</title>
-  <h2>Termos e Condições de Uso App Lobbo</h2>
+  <title>Visualizador de PDF</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
-      overflow: hidden;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
     }
 
-    #pdf-container {
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-group {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .btn-group button {
+      margin-right: 10px;
+      padding: 8px 16px;
+      font-size: 16px;
+      border: none;
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .pdf-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%;
+    }
+
+    .pdf-container object {
       position: absolute;
       top: 0;
       left: 0;
@@ -19,16 +55,43 @@
       height: 100%;
     }
 
-    #pdf-object {
-      width: 100%;
-      height: 100%;
+    .pdf-download-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #4CAF50;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div id="pdf-container">
-    <object id="pdf-object" data="termos_lobbo.pdf" type="application/pdf">
-    </object>
+  <div class="container">
+    <h1>Termos e Política de Privacidade</h1>
+
+    <div class="btn-group">
+      <button onclick="showPDF('lobbo_terms.pdf')">Termos de Cuidado</button>
+      <button onclick="showPDF('lobbo_privacy.pdf')">Política de Privacidade</button>
+    </div>
+
+    <div class="pdf-container">
+      <object id="pdf-object" data="" type="application/pdf">
+        <p>Desculpe, seu navegador não suporta visualização de PDF. Você pode fazer o download do arquivo usando o link abaixo:</p>
+        <a id="pdf-download-link" href="">Baixar PDF</a>
+      </object>
+    </div>
   </div>
+
+  <script>
+    function showPDF(pdfFilename) {
+      var pdfPath = pdfFilename;
+      var downloadLink = pdfFilename;
+
+      var pdfObject = document.getElementById("pdf-object");
+      var pdfDownloadLink = document.getElementById("pdf-download-link");
+
+      pdfObject.data = pdfPath;
+      pdfDownloadLink.href = downloadLink;
+    }
+  </script>
 </body>
 </html>
