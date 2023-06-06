@@ -1,97 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Visualizador de PDF</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f1f1f1;
-    }
+    <meta charset="UTF-8">
+    <title>Exemplo de Botões</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    h1 {
-      color: #333;
-      text-align: center;
-      margin-top: 30px;
-    }
+        html, body {
+            height: 100%;
+        }
 
-    .container {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .btn-group {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+        .container {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
 
-    .btn-group button {
-      margin-right: 10px;
-      padding: 8px 16px;
-      font-size: 16px;
-      border: none;
-      background-color: #4CAF50;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
 
-    .pdf-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 100%;
-    }
+        .button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            text-align: center;
+            font-size: 18px;
+            padding: 12px 24px;
+            margin: 0 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
 
-    .pdf-container object {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+        .button:hover {
+            background-color: #45a049;
+        }
 
-    .pdf-download-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #4CAF50;
-      text-decoration: none;
-    }
-  </style>
+        .content {
+            flex: 1;
+            overflow: auto;
+            display: none;
+        }
+
+        object {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Termos e Política de Privacidade</h1>
+    <div class="container">
+        <div class="button-container">
+            <button class="button" onclick="mostrarBody1()">Termos de Cuidado</button>
+            <button class="button" onclick="mostrarBody2()">Políticas de Privacidade</button>
+        </div>
 
-    <div class="btn-group">
-      <button onclick="showPDF('lobbo_terms.pdf')">Termos de Cuidado</button>
-      <button onclick="showPDF('lobbo_privacy.pdf')">Política de Privacidade</button>
+        <div id="body1" class="content">
+            <object data="termos_lobbo.html"></object>
+        </div>
+
+        <div id="body2" class="content">
+            <object data="politicas_lobbo.html"></object>
+        </div>
     </div>
 
-    <div class="pdf-container">
-      <object id="pdf-object" data="" type="application/pdf">
-        <p>Desculpe, seu navegador não suporta visualização de PDF. Você pode fazer o download do arquivo usando o link abaixo:</p>
-        <a id="pdf-download-link" href="">Baixar PDF</a>
-      </object>
-    </div>
-  </div>
+    <script>
+        function mostrarBody1() {
+            document.getElementById('body1').style.display = 'block';
+            document.getElementById('body2').style.display = 'none';
+        }
 
-  <script>
-    function showPDF(pdfFilename) {
-      var pdfPath = pdfFilename;
-      var downloadLink = pdfFilename;
-
-      var pdfObject = document.getElementById("pdf-object");
-      var pdfDownloadLink = document.getElementById("pdf-download-link");
-
-      pdfObject.data = pdfPath;
-      pdfDownloadLink.href = downloadLink;
-    }
-  </script>
+        function mostrarBody2() {
+            document.getElementById('body1').style.display = 'none';
+            document.getElementById('body2').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
